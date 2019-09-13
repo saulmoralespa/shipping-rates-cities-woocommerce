@@ -34,6 +34,8 @@ Colombia
 
 1. Configuración general screenshot-1.png
 2. Configuración cargar costos screenshot-2.png
+3. Agregar método en zona de envío screenshot-3.png
+4. Método de envío en funcionamiento screenshot-4.png
 
 == Changelog ==
 

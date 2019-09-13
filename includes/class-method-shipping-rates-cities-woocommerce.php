@@ -10,7 +10,6 @@ class WC_Shipping_Method_Shipping_Rates_Cities_WC extends WC_Shipping_Method
         $this->instance_id = absint( $instance_id );
         $this->method_title = __( 'Shipping rates cities' );
         $this->method_description = __( 'Shipping rates cities, calculate shipping cost by cities' );
-        $this->title = __( 'Shipping rates cities' );
 
         $wc_main_settings = get_option('woocommerce_shipping_rates_cities_wc_sr_settings');
         $this->title = isset($wc_main_settings['title']) ? $wc_main_settings['title'] : '';
