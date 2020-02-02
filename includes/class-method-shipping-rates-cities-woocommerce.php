@@ -95,6 +95,8 @@ class WC_Shipping_Method_Shipping_Rates_Cities_WC extends WC_Shipping_Method
         $country = $package['destination']['country'];
         $state_destination = $package['destination']['state'];
         $city_destination  = $package['destination']['city'];
+        $city_destination = self::clean_string($city_destination);
+        $city_destination = self::clean_city($city_destination);
 
         if($country !== 'CO' || empty($state_destination))
             return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', false, $package, $this );
@@ -109,6 +111,9 @@ class WC_Shipping_Method_Shipping_Rates_Cities_WC extends WC_Shipping_Method
         $cities = include dirname(__FILE__) . '/cities.php';
 
         $destine = array_search($address_destine, $cities);
+
+        if(!$destine)
+            $destine = array_search($address_destine, self::clean_cities($cities));
 
         if(!$destine)
             return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', false, $package, $this );
@@ -170,15 +175,24 @@ class WC_Shipping_Method_Shipping_Rates_Cities_WC extends WC_Shipping_Method
     public static function clean_string($string)
     {
         $not_permitted = array ("á","é","í","ó","ú","Á","É","Í",
-            "Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬",
-            "Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ",
-            "ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã",
-            "Ã„","Ã‹");
+            "Ó","Ú","ñ");
         $permitted = array ("a","e","i","o","u","A","E","I","O",
-            "U","n","N","A","E","I","O","U","a","e","i","o","u",
-            "c","C","a","e","i","o","u","A","E","I","O","U","u",
-            "o","O","i","a","e","U","I","A","E");
+            "U","n");
         $text = str_replace($not_permitted, $permitted, $string);
         return $text;
+    }
+
+    public static function clean_city($city)
+    {
+        Return $city == 'Bogota D.C' ? 'Bogota' : $city;
+    }
+
+    public static function clean_cities($cities)
+    {
+        foreach ($cities as $key => $value){
+            $cities[$key] = self::clean_string($value);
+        }
+
+        return $cities;
     }
 }

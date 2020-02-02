@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Shipping Rates Cities Woocommerce
  * Description: Shipping Rates by Cities for Woocommerce is available for Colombia
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Saul Morales Pacheco
  * Author URI: https://saulmoralespa.com
  * License: GNU General Public License v3.0
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if(!defined('SHIPPING_RATES_CITIES_WC_SR_VERSION')){
-    define('SHIPPING_RATES_CITIES_WC_SR_VERSION', '1.0.0');
+    define('SHIPPING_RATES_CITIES_WC_SR_VERSION', '1.0.1');
 }
 
 add_action( 'plugins_loaded', 'shipping_rates_cities_wc_sr_init', 1 );
@@ -38,17 +38,6 @@ function shipping_rates_cities_wc_sr_notices( $notice ) {
 }
 
 function shipping_rates_cities_wc_sr_requirements(){
-    if ( version_compare( '7.1.0', PHP_VERSION, '>' ) ) {
-        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-            add_action(
-                'admin_notices',
-                function() {
-                    shipping_rates_cities_wc_sr_notices( 'Shipping Rates Cities Woocommerce: Requiere la versión de php 7.1 o superior' );
-                }
-            );
-        }
-        return false;
-    }
 
     if ( ! extension_loaded( 'xml' ) ){
         if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {

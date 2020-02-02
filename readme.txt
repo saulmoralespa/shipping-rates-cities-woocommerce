@@ -5,7 +5,7 @@ Tags: commerce, e-commerce, commerce, wordpress ecommerce, store, sales, sell, s
 Requires at least: 5.0
 Tested up to: 5.2
 Requires PHP: 7.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -41,6 +41,8 @@ Colombia
 
 = 1.0.0 =
 * Initial stable release
+= 1.0.1 =
+* Fixed special characters cities
 
 == Additional Info ==
 **Contribute** [repository on github](https://github.com/saulmoralespa/shipping-rates-cities-woocommerce)
